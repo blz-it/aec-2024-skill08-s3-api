@@ -20,7 +20,17 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return this.userRepository.findOneOrFail({ id });
+    return this.userRepository.findOneOrFail(
+      { id },
+      {
+        populate: [
+          'posts',
+          'posts.likedBy',
+          'posts.comments',
+          'posts.comments.author',
+        ],
+      },
+    );
   }
 
   findOneByUsername(username: string) {
@@ -33,6 +43,7 @@ export class UsersService {
     file?: Express.Multer.File,
   ) {
     const user = await this.userRepository.findOneOrFail({ id });
+    // @ts-expect-error wrap causes error in type system
     wrap(user).assign(updateUserDto);
     if (file) user.imageUrl = `/uploads/${file.filename}`;
     await this.em.flush();
