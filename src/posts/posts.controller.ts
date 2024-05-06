@@ -41,7 +41,6 @@ export class PostsController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [new FileTypeValidator({ fileType: 'image/*' })],
-        fileIsRequired: false,
       }),
     )
     file: Express.Multer.File,

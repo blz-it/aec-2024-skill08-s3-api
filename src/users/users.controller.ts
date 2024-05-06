@@ -49,7 +49,7 @@ export class UsersController {
         fileIsRequired: false,
       }),
     )
-    file: Express.Multer.File,
+    file?: Express.Multer.File,
   ) {
     if (user.sub !== +id) throw new ForbiddenException();
 
