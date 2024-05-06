@@ -1,4 +1,4 @@
-name: aec-2024-skill08-s3
+name: aec-2024-skill08-s3-dev
 
 services:
   postgres:

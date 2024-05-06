@@ -3,7 +3,7 @@
 ## Development
 
 ```sh
-docker compose up
+docker compose -f docker-compose.dev.yml up
 pnpm install
 pnpm start:dev
 ```
