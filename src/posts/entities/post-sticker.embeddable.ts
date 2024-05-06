@@ -3,12 +3,12 @@ import { Embeddable, Property } from '@mikro-orm/core';
 @Embeddable()
 export class PostSticker {
   @Property()
-  id: number;
+  name: string;
 
-  @Property()
+  @Property({ columnType: 'float' })
   x: number;
 
-  @Property()
+  @Property({ columnType: 'float' })
   y: number;
 
   @Property()

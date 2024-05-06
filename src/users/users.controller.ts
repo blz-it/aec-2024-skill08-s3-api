@@ -42,7 +42,6 @@ export class UsersController {
   update(
     @User() user: UserPayload,
     @Param('id') id: string,
-
     @Body() updateUserDto: UpdateUserDto,
     @UploadedFile(
       new ParseFilePipe({
