@@ -12,6 +12,6 @@ export class User {
   @Property({ nullable: true })
   caption?: string;
 
-  // @Property()
-  // pictureUrl: string;
+  @Property({ nullable: true })
+  imageUrl?: string;
 }

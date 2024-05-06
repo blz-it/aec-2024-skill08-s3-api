@@ -27,9 +27,14 @@ export class UsersService {
     return this.userRepository.findOneOrFail({ username });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(
+    id: number,
+    updateUserDto: UpdateUserDto,
+    file?: Express.Multer.File,
+  ) {
     const user = await this.userRepository.findOneOrFail({ id });
     wrap(user).assign(updateUserDto);
+    if (file) user.imageUrl = `/uploads/${file.filename}`;
     await this.em.flush();
     return user;
   }

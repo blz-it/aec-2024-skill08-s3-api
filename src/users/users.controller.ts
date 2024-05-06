@@ -54,8 +54,6 @@ export class UsersController {
   ) {
     if (user.sub !== +id) throw new ForbiddenException();
 
-    if (file) console.log(file);
-
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(+id, updateUserDto, file);
   }
 }
