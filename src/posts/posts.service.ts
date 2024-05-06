@@ -4,7 +4,9 @@ import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
 import { UserPayload } from 'src/auth/decorators/user.decorator';
 import { User } from 'src/users/entities/user.entity';
+import { CommentPostDto } from './dto/comment-post.dto';
 import { CreatePostDto } from './dto/create-post.dto';
+import { PostComment } from './entities/post-comment.entity';
 import { Post } from './entities/post.entity';
 
 @Injectable()
@@ -14,6 +16,8 @@ export class PostsService {
     private readonly postRepository: EntityRepository<Post>,
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
+    @InjectRepository(PostComment)
+    private readonly postCommentRepository: EntityRepository<PostComment>,
     private readonly em: EntityManager,
   ) {}
 
@@ -33,14 +37,14 @@ export class PostsService {
 
   findAll() {
     return this.postRepository.findAll({
-      populate: ['author', 'likedBy', 'comments'],
+      populate: ['author', 'likedBy', 'comments', 'comments.author'],
     });
   }
 
   async like(id: number, userId: number) {
     const post = await this.postRepository.findOneOrFail(
       { id },
-      { populate: ['author', 'likedBy', 'comments'] },
+      { populate: ['author', 'likedBy', 'comments', 'comments.author'] },
     );
     const user = await this.userRepository.findOneOrFail({ id: userId });
 
@@ -53,11 +57,29 @@ export class PostsService {
   async unlike(id: number, userId: number) {
     const post = await this.postRepository.findOneOrFail(
       { id },
-      { populate: ['author', 'likedBy', 'comments'] },
+      { populate: ['author', 'likedBy', 'comments', 'comments.author'] },
     );
     const user = await this.userRepository.findOneOrFail({ id: userId });
 
     if (post.likedBy.contains(user)) post.likedBy.remove(user);
+
+    await this.em.flush();
+    return post;
+  }
+
+  async comment(id: number, userId: number, comment: CommentPostDto) {
+    const post = await this.postRepository.findOneOrFail(
+      { id },
+      { populate: ['author', 'likedBy', 'comments', 'comments.author'] },
+    );
+    const user = await this.userRepository.findOneOrFail({ id: userId });
+
+    const postComment = this.postCommentRepository.create({
+      ...comment,
+      post,
+      author: user,
+    });
+    post.comments.add(postComment);
 
     await this.em.flush();
     return post;
