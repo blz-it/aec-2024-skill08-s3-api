@@ -3,6 +3,7 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
 import { UserPayload } from 'src/auth/decorators/user.decorator';
+import { User } from 'src/users/entities/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Post } from './entities/post.entity';
 
@@ -11,6 +12,8 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: EntityRepository<Post>,
+    @InjectRepository(User)
+    private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
   ) {}
 
@@ -30,5 +33,31 @@ export class PostsService {
 
   findAll() {
     return this.postRepository.findAll({ populate: ['author'] });
+  }
+
+  async like(id: number, userId: number) {
+    const post = await this.postRepository.findOneOrFail(
+      { id },
+      { populate: ['likedBy'] },
+    );
+    const user = await this.userRepository.findOneOrFail({ id: userId });
+
+    if (!post.likedBy.contains(user)) post.likedBy.add(user);
+
+    await this.em.flush();
+    return post;
+  }
+
+  async unlike(id: number, userId: number) {
+    const post = await this.postRepository.findOneOrFail(
+      { id },
+      { populate: ['likedBy'] },
+    );
+    const user = await this.userRepository.findOneOrFail({ id: userId });
+
+    if (post.likedBy.contains(user)) post.likedBy.remove(user);
+
+    await this.em.flush();
+    return post;
   }
 }

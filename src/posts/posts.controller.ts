@@ -3,6 +3,7 @@ import {
   Controller,
   FileTypeValidator,
   Get,
+  Param,
   ParseFilePipe,
   Post,
   UploadedFile,
@@ -49,5 +50,15 @@ export class PostsController {
   @Get()
   findAll() {
     return this.postsService.findAll();
+  }
+
+  @Post(':id/like')
+  like(@User() user: UserPayload, @Param('id') id: string) {
+    return this.postsService.like(+id, user.sub);
+  }
+
+  @Post(':id/unlike')
+  unlike(@User() user: UserPayload, @Param('id') id: string) {
+    return this.postsService.unlike(+id, user.sub);
   }
 }
