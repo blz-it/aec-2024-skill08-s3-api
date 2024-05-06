@@ -8,12 +8,8 @@ pnpm install
 pnpm start:dev
 ```
 
-## Build
+## Production
 
 ```sh
-docker build -t aec-2024-skill08-s3-api .
+docker compose -f docker-compose.prod.yml up
 ```
-
-## Competition
-
-TODO
