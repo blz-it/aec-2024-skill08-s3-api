@@ -32,13 +32,15 @@ export class PostsService {
   }
 
   findAll() {
-    return this.postRepository.findAll({ populate: ['author'] });
+    return this.postRepository.findAll({
+      populate: ['author', 'likedBy', 'comments'],
+    });
   }
 
   async like(id: number, userId: number) {
     const post = await this.postRepository.findOneOrFail(
       { id },
-      { populate: ['likedBy'] },
+      { populate: ['author', 'likedBy', 'comments'] },
     );
     const user = await this.userRepository.findOneOrFail({ id: userId });
 
@@ -51,7 +53,7 @@ export class PostsService {
   async unlike(id: number, userId: number) {
     const post = await this.postRepository.findOneOrFail(
       { id },
-      { populate: ['likedBy'] },
+      { populate: ['author', 'likedBy', 'comments'] },
     );
     const user = await this.userRepository.findOneOrFail({ id: userId });
 
