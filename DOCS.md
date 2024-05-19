@@ -249,8 +249,6 @@ Example Response
 <details>
   <summary>View details</summary>
 
-Endpoint
-
 ```
 POST /posts/:id/likes
 ```
