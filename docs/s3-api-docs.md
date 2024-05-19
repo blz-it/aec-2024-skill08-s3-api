@@ -33,11 +33,11 @@ curl --location --request POST 'http://api-url/posts' \
 --form 'location[longitude]="2.17403"' \
 --form 'stickers[0][name]="a"' \
 --form 'stickers[0][x]="0.5"' \
---form 'stickers[0][y]="-0.25"' \
---form 'stickers[0][rotation]="15"' \
+--form 'stickers[0][y]="0.25"' \
+--form 'stickers[0][rotation]="3.14"' \
 --form 'stickers[1][name]="b"' \
 --form 'stickers[1][x]="0.33"' \
---form 'stickers[1][y]="0"' \
+--form 'stickers[1][y]="0.4"' \
 --form 'stickers[1][rotation]="0"'
 ```
 
@@ -108,13 +108,13 @@ Example Response
         {
           "name": "a",
           "x": "0.5",
-          "y": "-0.25",
-          "rotation": "15"
+          "y": "0.25",
+          "rotation": "3.14"
         },
         {
           "name": "b",
           "x": "0.33",
-          "y": "0",
+          "y": "0.4",
           "rotation": "0"
         }
       ],
@@ -211,13 +211,13 @@ Example Response
       {
         "name": "a",
         "x": "0.5",
-        "y": "-0.25",
-        "rotation": "15"
+        "y": "0.25",
+        "rotation": "3.14"
       },
       {
         "name": "b",
         "x": "0.33",
-        "y": "0",
+        "y": "0.4",
         "rotation": "0"
       }
     ],

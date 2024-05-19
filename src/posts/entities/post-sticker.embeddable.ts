@@ -11,6 +11,6 @@ export class PostSticker {
   @Property({ columnType: 'float' })
   y: number;
 
-  @Property()
+  @Property({ columnType: 'float' })
   rotation: number;
 }
