@@ -8,6 +8,39 @@ This is the API documentation for the AEC 2024 Skill 08 Session 3 API.
 - Every endpoint (except for the authentication endpoint) requires the user to be authenticated.
 - When a request body contains a file, the request must be sent as `multipart/form-data`.
 
+<details>
+  <summary>More details on <code>multipart/form-data</code></summary>
+
+When sending a request with a file, the request must be sent as `multipart/form-data`. This format structures the request body as a series of key-value pairs, where the key represents the name of the field in the form, and the value is the data associated with that field.
+
+The key-value pairs require a specific format:
+
+- Simple Key-Value Pairs: These are straightforward pairs like `caption: "My super cool post caption!"`.
+- File Uploads: When uploading a file, specify the key and provide the file using its path, such as `image: "/path/to/file/image.jpg"`.
+- Nested Keys: If you need to send nested data, you can use the following format: `foo[bar][baz]: "value"`.
+- Arrays: When sending arrays, you additionally need to specify the index of the array element. For example, `arr[0][key]: "abc"`.
+
+Here is an example on how to structure a `multipart/form-data` request to create a new post using `cURL`:
+
+```bash
+curl --location --request POST 'http://api-url/posts' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYmVuamFtaW5fZnJvc3QiLCJpYXQiOjE3MTUwMjY5MjYsImV4cCI6MTcxNzYxODkyNn0.gAm5sI5V2gzIE49_RQAbgBW3zVINHCKd0xaRWT6bwKY' \
+--form 'caption="My super cool post caption!"' \
+--form 'image=@"/path/to/file/image.jpg"' \
+--form 'location[latitude]="41.40338"' \
+--form 'location[longitude]="2.17403"' \
+--form 'stickers[0][name]="a"' \
+--form 'stickers[0][x]="0.5"' \
+--form 'stickers[0][y]="-0.25"' \
+--form 'stickers[0][rotation]="15"' \
+--form 'stickers[1][name]="b"' \
+--form 'stickers[1][x]="0.33"' \
+--form 'stickers[1][y]="0"' \
+--form 'stickers[1][rotation]="0"'
+```
+
+</details>
+
 ## Authentication
 
 The API uses a simple authentication mechanism. The user must provide a valid username to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme. Additionally, the API will respond with the user's ID, which is required to access the authenticated user's profile.
