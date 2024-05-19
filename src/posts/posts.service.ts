@@ -28,7 +28,7 @@ export class PostsService {
   ) {
     const post = this.postRepository.create({
       ...createPostDto,
-      imageUrl: file ? `/uploads/${file.filename}` : undefined,
+      imageUrl: file ? `/static/uploads/${file.filename}` : undefined,
       author: user.sub,
     });
     await this.em.flush();

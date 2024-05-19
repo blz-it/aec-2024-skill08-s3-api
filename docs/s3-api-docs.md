@@ -66,7 +66,7 @@ Example Response
       "id": 1,
       "createdAt": "2024-05-06T20:53:30.271Z",
       "updatedAt": "2024-05-06T20:53:30.272Z",
-      "imageUrl": "/uploads/dd229dab-84b2-4000-879e-a38dbb1c8796.jpeg",
+      "imageUrl": "/static/uploads/dd229dab-84b2-4000-879e-a38dbb1c8796.jpeg",
       "caption": "This is my first post!",
       "author": 1,
       "stickers": [
@@ -143,7 +143,7 @@ Request Body
 
 ## Posts
 
-The API provides endpoints to retrieve all posts, like a post, unlike a post, comment on a post, and create a new post.
+The API provides endpoints to retrieve all posts, like a post, unlike a post, comment on a post, create a new post, and get available stickers.
 
 ### Get All Posts
 
@@ -162,7 +162,7 @@ Example Response
     "id": 1,
     "createdAt": "2024-05-06T20:53:30.271Z",
     "updatedAt": "2024-05-06T20:53:30.272Z",
-    "imageUrl": "/uploads/dd229dab-84b2-4000-879e-a38dbb1c8796.jpeg",
+    "imageUrl": "/static/uploads/dd229dab-84b2-4000-879e-a38dbb1c8796.jpeg",
     "caption": "This is my first post!",
     "author": {
       "id": 1,
@@ -222,7 +222,7 @@ Example Response
     "id": 2,
     "createdAt": "2024-05-06T20:54:39.213Z",
     "updatedAt": "2024-05-06T20:54:39.213Z",
-    "imageUrl": "/uploads/3037f4d9-a335-434c-b5c3-62cf1d181c64.jpeg",
+    "imageUrl": "/static/uploads/3037f4d9-a335-434c-b5c3-62cf1d181c64.jpeg",
     "caption": "This is my second post!",
     "author": {
       "id": 1,
@@ -314,6 +314,32 @@ Request Body
     }
   ]
 }
+```
+
+</details>
+
+### Get Available Stickers
+
+<details>
+  <summary>View details</summary>
+
+```
+GET /posts/stickers
+```
+
+Example Response
+
+```json
+[
+  {
+    "name": "a",
+    "imageUrl": "/static/stickers/a.png"
+  },
+  {
+    "name": "b",
+    "imageUrl": "/static/stickers/b.png"
+  }
+]
 ```
 
 </details>

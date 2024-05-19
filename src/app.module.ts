@@ -28,8 +28,8 @@ import { UsersModule } from './users/users.module';
     }),
     PostsModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
-      serveRoot: '/uploads',
+      rootPath: join(__dirname, '..', 'static'),
+      serveRoot: '/static',
     }),
     UsersModule,
   ],

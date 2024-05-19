@@ -15,6 +15,7 @@ import { randomUUID } from 'crypto';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { User, UserPayload } from 'src/auth/decorators/user.decorator';
+import { stickers } from './constants';
 import { CommentPostDto } from './dto/comment-post.dto';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PostsService } from './posts.service';
@@ -27,7 +28,7 @@ export class PostsController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: './uploads',
+        destination: './static/uploads',
         filename: (_, file, cb) => {
           const filename = randomUUID() + extname(file.originalname);
           cb(null, filename);
@@ -70,5 +71,10 @@ export class PostsController {
     @Body() commentPostDto: CommentPostDto,
   ) {
     return this.postsService.comment(+id, user.sub, commentPostDto);
+  }
+
+  @Get('stickers')
+  getStickers() {
+    return stickers;
   }
 }

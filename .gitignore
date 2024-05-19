@@ -56,5 +56,5 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # File upload
-uploads/*
-!uploads/.gitkeep
+static/uploads/*
+!static/uploads/.gitkeep

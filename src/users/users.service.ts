@@ -45,7 +45,7 @@ export class UsersService {
     const user = await this.userRepository.findOneOrFail({ id });
     // @ts-expect-error wrap causes error in type system
     wrap(user).assign(updateUserDto);
-    if (file) user.imageUrl = `/uploads/${file.filename}`;
+    if (file) user.imageUrl = `/static/uploads/${file.filename}`;
     await this.em.flush();
     return user;
   }
