@@ -10,7 +10,7 @@ This is the API documentation for the AEC 2024 Skill 08 Session 3 API.
 
 ## Authentication
 
-The API uses a simple authentication mechanism. The user must provide a valid username in order to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme. Besides the JWT, the API will also respond with the user's ID which is required to access the authenticated user's profile.
+The API uses a simple authentication mechanism. The user must provide a valid username to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme. Additionally, the API will respond with the user's ID, which is required to access the authenticated user's profile.
 
 <details>
   <summary>View details</summary>
@@ -40,7 +40,7 @@ Example Response
 
 ## Users
 
-The API provides endpoints to get a user's profile and their posts. Furthermore, it allows to update the profile of the authenticated user.
+The API provides endpoints to get a user's profile and their posts. It also allows updating the profile of the authenticated user.
 
 ### Get User Profile
 
@@ -143,7 +143,7 @@ Request Body
 
 ## Posts
 
-The API provides endpoints to get all posts, like a post, unlike a post, comment on a post, and create a new post.
+The API provides endpoints to retrieve all posts, like a post, unlike a post, comment on a post, and create a new post.
 
 ### Get All Posts
 
