@@ -11,16 +11,18 @@ This is the API documentation for the AEC 2024 Skill 08 Session 3 API.
 <details>
   <summary>More details on <code>multipart/form-data</code></summary>
 
-When sending a request with a file, the request must be sent as `multipart/form-data`. This format structures the request body as a series of key-value pairs, where the key represents the name of the field in the form, and the value is the data associated with that field.
+  <p>When sending a request with a file, the request must be sent as <code>multipart/form-data</code>. This format structures the request body as a series of key-value pairs, where the key represents the name of the field in the form, and the value is the data associated with that field.</p>
 
-The key-value pairs require a specific format:
+  <p>The key-value pairs require a specific format:</p>
 
-- Simple Key-Value Pairs: These are straightforward pairs like `caption: "My super cool post caption!"`.
-- File Uploads: When uploading a file, specify the key and provide the file using its path, such as `image: "/path/to/file/image.jpg"`.
-- Nested Keys: If you need to send nested data, you can use the following format: `foo[bar][baz]: "value"`.
-- Arrays: When sending arrays, you additionally need to specify the index of the array element. For example, `arr[0][key]: "abc"`.
+  <ul>
+    <li>Simple Key-Value Pairs: These are straightforward pairs like <code>caption: "My super cool post caption!"</code>.</li>
+    <li>File Uploads: When uploading a file, specify the key and provide the file using its path, such as <code>image: "/path/to/file/image.jpg"</code>.</li>
+    <li>Nested Keys: If you need to send nested data, you can use the following format: <code>foo[bar][baz]: "value"</code>.</li>
+    <li>Arrays: When sending arrays, you additionally need to specify the index of the array element. For example, <code>arr[0][key]: "abc"</code>.</li>
+  </ul>
 
-Here is an example on how to structure a `multipart/form-data` request to create a new post using `cURL`:
+  <p>Here is an example on how to structure a <code>multipart/form-data</code> request to create a new post using <code>cURL</code>:</p>
 
 ```bash
 curl --location --request POST 'http://api-url/posts' \
