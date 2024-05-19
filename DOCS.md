@@ -10,7 +10,7 @@ This is the API documentation for the AEC 2024 Skill 08 Session 3 API.
 
 ## Authentication
 
-The API uses a simple authentication mechanism. The user must provide a valid username in order to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON object containing a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme.
+The API uses a simple authentication mechanism. The user must provide a valid username in order to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme. Besides the JWT, the API will also respond with the user's ID which is required to access the authenticated user's profile.
 
 <details>
   <summary>View details</summary>
@@ -31,6 +31,7 @@ Example Response
 
 ```json
 {
+  "id": 2,
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYmVuamFtaW5fZnJvc3QiLCJpYXQiOjE3MTUwMjY5MjYsImV4cCI6MTcxNzYxODkyNn0.gAm5sI5V2gzIE49_RQAbgBW3zVINHCKd0xaRWT6bwKY"
 }
 ```
