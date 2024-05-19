@@ -1,16 +1,19 @@
 import { Transform, Type } from 'class-transformer';
 import {
   IsDecimal,
+  IsIn,
   IsInt,
   IsNotEmpty,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { stickers } from '../constants';
 
 class StickerDto {
   @IsString()
   @IsNotEmpty()
+  @IsIn(stickers.map((sticker) => sticker.name))
   name: string;
 
   @IsDecimal()
