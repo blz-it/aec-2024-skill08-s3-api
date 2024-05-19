@@ -15,13 +15,11 @@ The API uses a simple authentication mechanism. The user must provide a valid us
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 POST /auth/login
 ```
 
-#### Request Body
+Request Body
 
 ```
 {
@@ -29,7 +27,7 @@ POST /auth/login
 }
 ```
 
-#### Example Response
+Example Response
 
 ```json
 {
@@ -48,13 +46,11 @@ The API provides endpoints to get a user's profile and their posts. Furthermore,
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 GET /users/:id
 ```
 
-#### Example Response
+Example Response
 
 ```json
 {
@@ -129,13 +125,11 @@ GET /users/:id
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 PATCH /users/:id
 ```
 
-#### Request Body
+Request Body
 
 ```
 {
@@ -155,13 +149,11 @@ The API provides endpoints to get all posts, like a post, unlike a post, comment
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 GET /posts
 ```
 
-#### Example Response
+Example Response
 
 ```json
 [
@@ -257,7 +249,7 @@ GET /posts
 <details>
   <summary>View details</summary>
 
-#### Endpoint
+Endpoint
 
 ```
 POST /posts/:id/likes
@@ -270,8 +262,6 @@ POST /posts/:id/likes
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 DELETE /posts/:id/likes
 ```
@@ -283,13 +273,11 @@ DELETE /posts/:id/likes
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 POST /posts/:id/comments
 ```
 
-#### Request Body
+Request Body
 
 ```
 {
@@ -304,13 +292,11 @@ POST /posts/:id/comments
 <details>
   <summary>View details</summary>
 
-#### Endpoint
-
 ```
 POST /posts
 ```
 
-#### Request Body
+Request Body
 
 ```
 {
