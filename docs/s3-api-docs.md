@@ -45,7 +45,7 @@ curl --location --request POST 'http://api-url/posts' \
 
 ## Authentication
 
-The API uses a simple authentication mechanism. The user must provide a valid username to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme. Additionally, the API will respond with the user's ID, which is required to access the authenticated user's profile.
+The API uses a simple authentication mechanism. The user must provide a valid username to access the API. The username is sent as a JSON object in the request body. The API will respond with a JSON Web Token (JWT) that must be included in the `Authorization` header of all subsequent requests using the `Bearer` scheme (`Authorization: Bearer <JWT>`, e.g., `Authorization: Bearer ey…`). Additionally, the API will respond with the user's ID, which is required to access the authenticated user's profile.
 
 <details>
   <summary>View details</summary>
