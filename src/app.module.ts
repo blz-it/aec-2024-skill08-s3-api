@@ -29,7 +29,7 @@ import { UsersModule } from './users/users.module';
     PostsModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'static'),
-      serveRoot: '/static',
+      serveRoot: '/static/',
     }),
     UsersModule,
   ],
